@@ -1,3 +1,3 @@
 "use strict";
 
-alert("Hello " + navigator.product);
+alert(document.getElementById("text").style.background-color);
