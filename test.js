@@ -1,3 +1,5 @@
-"use strict";
+function changeColor(){
+var elem = document.getElementById("aa");
 
-alert(document.getElementById("text").style.background-color);
+elem.style.color = "#ff0000";
+}
