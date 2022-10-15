@@ -1,3 +1,5 @@
+//START EA1
+
 automated = false;
 
 function loadImage(filename) {
@@ -79,3 +81,5 @@ window.onkeydown = function (evt) {
 			break;
     }
 };
+
+//END EA1
