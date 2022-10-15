@@ -10,20 +10,46 @@ function loadImage(filename) {
 	imageObj.src = "textures/" + filename;
 }
 
+function loadImageTwo(filename) {
+	currentFileTwo = filename;
+	var imageObj = new Image();
+	imageObj.onload = function () {
+		var img = document.getElementById('junge');
+		img.setAttribute('src', this.src);
+	};
+	imageObj.src = "textures/" + filename;
+}
+
 function nextImage() {
 	currentNumber = currentFile.slice(0, currentFile.indexOf("."));
 	currentNumber = parseInt(currentNumber) + 1;
-	if (currentNumber == 25)
+	if (currentNumber == 25) {
 		currentNumber = 1;
+	}
 	loadImage(currentNumber + ".png");
+
+	currentNumberTwo = currentFileTwo.slice(3, currentFileTwo.indexOf("."));
+	currentNumberTwo = parseInt(currentNumberTwo) + 1;
+	if (currentNumberTwo == 16) {
+		currentNumberTwo = 1;
+	}
+	loadImageTwo("Run" + currentNumberTwo + ".png");
 }
 
 function prevImage() {
-	currentNumber = currentFile.slice(0, currentFile.indexOf("."));
+    currentNumber = currentFile.slice(0, currentFile.indexOf("."));
 	currentNumber = parseInt(currentNumber) - 1;
-	if (currentNumber == 0)
+	if (currentNumber == 0) {
 		currentNumber = 24;
+	}
 	loadImage(currentNumber + ".png");
+
+	currentNumberTwo = currentFileTwo.slice(3, currentFileTwo.indexOf("."));
+	currentNumberTwo = parseInt(currentNumberTwo) - 1;
+	if (currentNumberTwo == 0) {
+		currentNumberTwo = 15;
+	}
+	loadImageTwo("Run" + currentNumberTwo + ".png");
 }
 
 function autoAnimate() {
