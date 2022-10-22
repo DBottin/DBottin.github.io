@@ -1,35 +1,36 @@
+//START EA2
+
 function makeLines() {
-      var canvas = document.getElementById('canvas');
-    // Get the WebGL context
+
+    // ID und WebGL
     var canvas = document.getElementById('canvas');
     var gl = canvas.getContext('experimental-webgl');
 
-    // Pipeline setup
+    // Hintergrundfarbe
     gl.clearColor(0, 0, 0, 1);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    // Compile a vertex shader
+    // Vertex Shader erstellen
     var vsSource = 'attribute vec2 pos;' +
         'void main(){ gl_Position = vec4(pos * 0.1 - 1.0 , 0, 1); }';;
     var vs = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vs, vsSource);
     gl.compileShader(vs);
 
-    // Compile a fragment shader
+    // Fragment Shader erstellen
     fsSouce = 'void main() { gl_FragColor = vec4(1, 1, 1, 1); }';
     var fs = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fs, fsSouce);
     gl.compileShader(fs);
 
-    // Link together into a program
+    // Programm erstellen
     var prog = gl.createProgram();
     gl.attachShader(prog, vs);
     gl.attachShader(prog, fs);
     gl.linkProgram(prog);
     gl.useProgram(prog);
 
-
-    // Load vertex data into a buffer
+    // Untere Linien zeichnen
     var vertices = new Float32Array([
         20, 1,
         0, 1,
@@ -59,15 +60,13 @@ function makeLines() {
     gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
-    // Bind vertex buffer to attribute variable
     var posAttrib = gl.getAttribLocation(prog, 'pos');
     gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(posAttrib);
 
-    // Clear framebuffer and render primitives
     gl.drawArrays(gl.LINE_STRIP, 0, 24);
 
-    //Obere Linien
+    // Obere Linien
     var vertices = new Float32Array([
         20, 17,
         0, 17,
@@ -97,15 +96,13 @@ function makeLines() {
     gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
-    // Bind vertex buffer to attribute variable
     var posAttrib = gl.getAttribLocation(prog, 'pos');
     gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(posAttrib);
 
-    // Clear framebuffer and render primitives
     gl.drawArrays(gl.LINE_STRIP, 0, 24);
 
-    //Obere Linien
+    // Mittlere Linien
     var vertices = new Float32Array([
         0, 3,
         20, 17,
@@ -127,11 +124,12 @@ function makeLines() {
     gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
-    // Bind vertex buffer to attribute variable
     var posAttrib = gl.getAttribLocation(prog, 'pos');
     gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(posAttrib);
 
-    // Clear framebuffer and render primitives
+    //LINES statt LINE_STRIP
     gl.drawArrays(gl.LINES, 0, 16);
 }
+
+//END EA2
