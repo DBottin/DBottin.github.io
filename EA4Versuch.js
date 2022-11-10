@@ -281,25 +281,24 @@ function makeShapes() {
     }
 
     function createVertexDataHeli() {
-        var n = 40;
-        var m = 1;
+        var n = 30;
+        var m = 15;
         // Positions.
         vertices = new Float32Array(3 * (n + 1) * (m + 1));
 
         // Index data for Linestrip.
         indices = new Uint16Array(2 * 2 * n * m);
 
-        var du = 8 / n;
-        var dv = 8 / n;
-        var da = 3 / m;
+        const du = 2 * Math.PI / n;
+        const dv = 2 * Math.PI / m;
+        const a = 15;
 
         // Counter for entries in index array.
         var iIndex = 0;
         // Loop 1
-        for (var i = 0, u = -4, v = -4; i <= n; i++, u += du, v += dv) {
+        for (var i = 0, u = 0; i <= n; i++, u += du) {
 
-            // Loop 2
-            for (var j = 0, a = 0; j <= m; j++, a += da) {
+            for (var j = 0, v = 0; j <= m; j++, v += dv) {
                 var iVertex = i * (m + 1) + j;
                 var x = Math.sinh(v) * Math.cos(a * u) / (1 + Math.cosh(u) * Math.cosh(v));
                 var z = Math.sinh(v) * Math.sin(a * u) / (1 + Math.cosh(u) * Math.cosh(v));
