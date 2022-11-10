@@ -164,4 +164,51 @@ function makeShapes() {
             }
         }
     }
+
+    function createVertexDataDini() {
+        var n = 40;
+        var m = 6;
+        // Positions.
+        vertices = new Float32Array(3 * (n + 1) * (m + 1));
+
+        // Index data for Linestrip.
+        indices = new Uint16Array(2 * 2 * n * m);
+
+        var du = 4 * Math.PI / n;
+        var dv = 2 / n - 0.01 / n;
+        var da = 6 / m;
+        var db = 0.7 / m;
+        var dc = 1 / m;
+
+        // Counter for entries in index array.
+        var iIndex = 0;
+        // Loop angle t.
+        for (var i = 0, u = 0, v = 0.01; i <= n; i++, u += du, v += dv) {
+
+            // Loop radius r.
+            for (var j = 0, a = 0, b = 0, c = 0; j <= m; j++, a += da, b += db, c += dc) {
+                var iVertex = i * (m + 1) + j;
+                var x = a * Math.cos(u) * Math.sin(v);
+                var z = a * Math.sin(u) * Math.sin(v);
+                var y = a * (Math.cos(v) + Math.log(Math.tan(v / 2))) + b * u;
+
+                // Set vertex positions.
+                vertices[iVertex * 3] = x;
+                vertices[iVertex * 3 + 1] = y;
+                vertices[iVertex * 3 + 2] = z;
+                // Set index.
+                // Line on beam.
+                if (j > 0 && i > 0) {
+                    indices[iIndex++] = iVertex - 1;
+                    indices[iIndex++] = iVertex;
+                }
+
+                // Line on ring.
+                if (j > 0 && i > 0) {
+                    indices[iIndex++] = iVertex - (m + 1);
+                    indices[iIndex++] = iVertex;
+                }
+            }
+        }
+    }
 }
