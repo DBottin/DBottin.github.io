@@ -252,6 +252,12 @@ function makeShapes() {
 
         // Counter for entries in index array.
         var iIndex = 0;
+
+       // for (var i = 0, u = 0; i <= n; i++, u += du) {
+
+           
+        //    for (var j = 0, a = 6, b = 1, v = 0.01; j <= m; j++, v += dv) {
+
         // Loop 1
         for (var i = 0, u = 0, v = 0.01; i <= n; i++, u += du, v += dv) {
 
