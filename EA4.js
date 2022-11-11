@@ -185,7 +185,7 @@ function makeShapes() {
         'varying vec4 color;' +
         'void main(){' +
         'color = col;' +
-        'gl_Position = vec4(0.2 * pos, 1);' +
+        'gl_Position = vec4(0.3 * pos, 1);' +
         '}';
     var vs = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vs, vsSource);
