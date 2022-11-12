@@ -8,9 +8,11 @@ function makeShapes() {
     gl.clearColor(0, 0, 0, 0.5);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
+    //EA4 START
     gl.frontFace(gl.CCW);
     gl.enable(gl.CULL_FACE);
     gl.cullFace(gl.BACK);
+    //EA4 END
 
     // Vertex Shader erstellen
     var vsSource = '' +
@@ -57,8 +59,6 @@ function makeShapes() {
     gl.vertexAttribPointer(posAttrib, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(posAttrib);
 
-
-    //EA4 START
     var vboCol = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vboCol);
     gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
@@ -67,7 +67,7 @@ function makeShapes() {
     gl.vertexAttribPointer(colAttrib, 4, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(colAttrib);
 
-
+    //EA4 START
     var iboLines = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iboLines);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indicesLines, gl.STATIC_DRAW);
@@ -220,7 +220,6 @@ function makeShapes() {
     gl.vertexAttribPointer(posAttrib, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(posAttrib);
 
-
     var vboCol = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vboCol);
     gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
@@ -230,6 +229,7 @@ function makeShapes() {
     gl.enableVertexAttribArray(colAttrib);
 
 
+    //EA4 START
     var iboLines = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iboLines);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indicesLines, gl.STATIC_DRAW);
@@ -252,7 +252,6 @@ function makeShapes() {
     gl.drawElements(gl.LINES, iboLines.numberOfElements, gl.UNSIGNED_SHORT, 0);
 
 
-    //EA4 START
     function createShoeSurface() {
         var n = 32;
         var m = 32;
@@ -352,6 +351,7 @@ function makeShapes() {
             }
         }
     }
+    //EA4 END
 
 
     //Eigene Flaeche
@@ -409,7 +409,6 @@ function makeShapes() {
     gl.vertexAttribPointer(posAttrib, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(posAttrib);
 
-
     var vboCol = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vboCol);
     gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
@@ -419,6 +418,7 @@ function makeShapes() {
     gl.enableVertexAttribArray(colAttrib);
 
 
+    //EA4 START
     var iboLines = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, iboLines);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indicesLines, gl.STATIC_DRAW);
@@ -441,7 +441,7 @@ function makeShapes() {
     gl.drawElements(gl.LINES, iboLines.numberOfElements, gl.UNSIGNED_SHORT, 0);
 
 
-    //EA4 START
+    
     function createOwn() {
         var n = 16;
         var m = 16;
