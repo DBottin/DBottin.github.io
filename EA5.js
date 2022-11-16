@@ -27,7 +27,7 @@ var app = ( function() {
 		// Projection matrix.
 		pMatrix : mat4.create(),
 		// Projection types: ortho, perspective, frustum.
-		projectionType : "ortho",
+		projectionType: "perspective",
 		// Angle to Z-Axis for camera when orbiting the center
 		// given in radian.
 		zAngle : 0,
@@ -228,7 +228,7 @@ var app = ( function() {
 					// Camera distance to center.
 					camera.distance += sign * deltaTranslate;
 					break;
-				case ('V'):
+				case ('N'):
 					// Camera fovy in radian.
 					camera.fovy += sign * 5 * Math.PI / 180;
 					break;
