@@ -45,10 +45,6 @@ var ball = ( function() {
 				normals[iVertex * 3 + 1] = y / vertexLength;
 				normals[iVertex * 3 + 2] = z / vertexLength;
 
-				// if(i>14){
-				// continue;
-				// }
-
 				// Set index.
 				// Line on beam.
 				if(j > 0 && i > 0) {

@@ -1,16 +1,11 @@
-var rek = ( function() {
+//EA5 ALLES HIER
 
-	function changeRec() {
-		window.location.reload(false);
-		
-	}
+var rek = (function () {
 
 	function createVertexData() {
 
 		recursion = prompt("Gib die Rekursionstiefe an. (Empfohlen: Ganze Zahl zwischen 0 und 4)");
 
-		
-		
 		this.vertices = new Float32Array(18 * Math.pow(5, recursion));
 
 		this.vertices[0] = -1;	this.vertices[1] = 0;		                this.vertices[2] = -1;
@@ -20,12 +15,11 @@ var rek = ( function() {
 		this.vertices[12] = 0;  this.vertices[13] = 2 / Math.sqrt(2);       this.vertices[14] = 0;
 		this.vertices[15] = 0;  this.vertices[16] = -(2 / Math.sqrt(2));	this.vertices[17] = 0;
 
-		
 		// Normals.
 		this.normals = new Float32Array(this.vertices.length);
 		var normals = this.normals;
-		// Index data.
-		
+
+		// Index data
 		this.indicesTris = new Uint16Array(24 * Math.pow(5, recursion));
 
 		this.indicesTris[0] = 0;		this.indicesTris[1] = 1;		this.indicesTris[2] = 4;
@@ -36,17 +30,14 @@ var rek = ( function() {
 		this.indicesTris[15] = 3;		this.indicesTris[16] = 1;		this.indicesTris[17] = 5;
 		this.indicesTris[18] = 3;		this.indicesTris[19] = 2;		this.indicesTris[20] = 4;
 		this.indicesTris[21] = 2;		this.indicesTris[22] = 3;		this.indicesTris[23] = 5;
-			
 
-		
-		
-
-	
-
-
+		//Rekursion Start
 		for (var loop = 0; loop <= recursion; loop++) {
+
+			//Jeder Indice...
 			for (var j = 0; j <= 24 * Math.pow(5, loop); j++) {
 
+				//...erstellt 3 neue Vertices aus je 3 Koordinaten
 				if (j % 3 == 0) {
 					this.vertices[18 * Math.pow(5, loop) + 0 + (j * 3)] = (this.vertices[this.indicesTris[j + 0] * 3 + 0] + this.vertices[this.indicesTris[j + 1] * 3 + 0]) / 2;
 					this.vertices[18 * Math.pow(5, loop) + 1 + (j * 3)] = (this.vertices[this.indicesTris[j + 0] * 3 + 1] + this.vertices[this.indicesTris[j + 1] * 3 + 1]) / 2;
@@ -64,43 +55,25 @@ var rek = ( function() {
 					var prev2 = this.indicesTris[j + 1];
 					var prev3 = this.indicesTris[j + 2];
 
-					if (loop >= 0) {
-						this.indicesTris[24 * Math.pow(5, loop) + 0 + (j * 4)] = prev1;
-						this.indicesTris[24 * Math.pow(5, loop) + 1 + (j * 4)] = (18 * Math.pow(5, loop) + 0 + (j * 3)) / 3;
-						this.indicesTris[24 * Math.pow(5, loop) + 2 + (j * 4)] = (18 * Math.pow(5, loop) + 6 + (j * 3)) / 3;
+					//Aus den Vertices Dreiecke erstellen mit neuen Indices
+					this.indicesTris[24 * Math.pow(5, loop) + 0 + (j * 4)] = prev1;
+					this.indicesTris[24 * Math.pow(5, loop) + 1 + (j * 4)] = (18 * Math.pow(5, loop) + 0 + (j * 3)) / 3;
+					this.indicesTris[24 * Math.pow(5, loop) + 2 + (j * 4)] = (18 * Math.pow(5, loop) + 6 + (j * 3)) / 3;
 
-						this.indicesTris[24 * Math.pow(5, loop) + 3 + (j * 4)] = prev2;
-						this.indicesTris[24 * Math.pow(5, loop) + 4 + (j * 4)] = (18 * Math.pow(5, loop) + 3 + (j * 3)) / 3;
-						this.indicesTris[24 * Math.pow(5, loop) + 5 + (j * 4)] = (18 * Math.pow(5, loop) + 0 + (j * 3)) / 3;
+					this.indicesTris[24 * Math.pow(5, loop) + 3 + (j * 4)] = prev2;
+					this.indicesTris[24 * Math.pow(5, loop) + 4 + (j * 4)] = (18 * Math.pow(5, loop) + 3 + (j * 3)) / 3;
+					this.indicesTris[24 * Math.pow(5, loop) + 5 + (j * 4)] = (18 * Math.pow(5, loop) + 0 + (j * 3)) / 3;
 
-						this.indicesTris[24 * Math.pow(5, loop) + 6 + (j * 4)] = prev3;
-						this.indicesTris[24 * Math.pow(5, loop) + 7 + (j * 4)] = (18 * Math.pow(5, loop) + 6 + (j * 3)) / 3;
-						this.indicesTris[24 * Math.pow(5, loop) + 8 + (j * 4)] = (18 * Math.pow(5, loop) + 3 + (j * 3)) / 3;
+					this.indicesTris[24 * Math.pow(5, loop) + 6 + (j * 4)] = prev3;
+					this.indicesTris[24 * Math.pow(5, loop) + 7 + (j * 4)] = (18 * Math.pow(5, loop) + 6 + (j * 3)) / 3;
+					this.indicesTris[24 * Math.pow(5, loop) + 8 + (j * 4)] = (18 * Math.pow(5, loop) + 3 + (j * 3)) / 3;
 
-						this.indicesTris[24 * Math.pow(5, loop) + 9 + (j * 4)] = (18 * Math.pow(5, loop) + 0 + (j * 3)) / 3;
-						this.indicesTris[24 * Math.pow(5, loop) + 10 + (j * 4)] = (18 * Math.pow(5, loop) + 3 + (j * 3)) / 3;
-						this.indicesTris[24 * Math.pow(5, loop) + 11 + (j * 4)] = (18 * Math.pow(5, loop) + 6 + (j * 3)) / 3;
-					} else {
-						this.indicesTris[0 + (j * 4)] = prev1;
-						this.indicesTris[1 + (j * 4)] = (18 * Math.pow(5, loop) + 0 + (j * 3)) / 3;
-						this.indicesTris[2 + (j * 4)] = (18 * Math.pow(5, loop) + 6 + (j * 3)) / 3;
-
-						this.indicesTris[3 + (j * 4)] = prev2;
-						this.indicesTris[4 + (j * 4)] = (18 * Math.pow(5, loop) + 3 + (j * 3)) / 3;
-						this.indicesTris[5 + (j * 4)] = (18 * Math.pow(5, loop) + 0 + (j * 3)) / 3;
-
-						this.indicesTris[6 + (j * 4)] = prev3;
-						this.indicesTris[7 + (j * 4)] = (18 * Math.pow(5, loop) + 6 + (j * 3)) / 3;
-						this.indicesTris[8 + (j * 4)] = (18 * Math.pow(5, loop) + 3 + (j * 3)) / 3;
-
-						this.indicesTris[9 + (j * 4)] = (18 * Math.pow(5, loop) + 0 + (j * 3)) / 3;
-						this.indicesTris[10 + (j * 4)] = (18 * Math.pow(5, loop) + 3 + (j * 3)) / 3;
-						this.indicesTris[11 + (j * 4)] = (18 * Math.pow(5, loop) + 6 + (j * 3)) / 3;
-                    }
+					this.indicesTris[24 * Math.pow(5, loop) + 9 + (j * 4)] = (18 * Math.pow(5, loop) + 0 + (j * 3)) / 3;
+					this.indicesTris[24 * Math.pow(5, loop) + 10 + (j * 4)] = (18 * Math.pow(5, loop) + 3 + (j * 3)) / 3;
+					this.indicesTris[24 * Math.pow(5, loop) + 11 + (j * 4)] = (18 * Math.pow(5, loop) + 6 + (j * 3)) / 3;
 					
-
-
-
+					
+					//Sicherstellen, dass die neuen Verices auf dem Kreis liegen
 					this.vertices[18 * Math.pow(5, loop) + 0 + (j * 3)] = this.vertices[18 * Math.pow(5, loop) + 0 + (j * 3)]
 						/ (Math.sqrt(this.vertices[18 * Math.pow(5, loop) + 0 + (j * 3)] * this.vertices[18 * Math.pow(5, loop) + 0 + (j * 3)]
 							+ this.vertices[18 * Math.pow(5, loop) + 1 + (j * 3)] * this.vertices[18 * Math.pow(5, loop) + 1 + (j * 3)]
@@ -140,14 +113,10 @@ var rek = ( function() {
 							+ this.vertices[18 * Math.pow(5, loop) + 7 + (j * 3)] * this.vertices[18 * Math.pow(5, loop) + 7 + (j * 3)]
 							+ this.vertices[18 * Math.pow(5, loop) + 8 + (j * 3)] * this.vertices[18 * Math.pow(5, loop) + 8 + (j * 3)]));
 
-				
-					
                 }
-
-
-
 			}
 
+			//Sicherstellen, dass die Startvertices auf dem Kreis liegen
 			for (var c = 0; c <= 23; c++) {
 				if (c % 3 == 0) {
 					this.vertices[c] = this.vertices[c] / (Math.sqrt(this.vertices[c] * this.vertices[c] + this.vertices[c + 1] * this.vertices[c + 1] + this.vertices[c + 2] * this.vertices[c + 2]));
@@ -158,18 +127,13 @@ var rek = ( function() {
 		}
 
 		
-		
-		
-
-		
-
 		var indicesTris = this.indicesTris;
 		var vertices = this.vertices;
 
 		this.indicesLines = new Uint16Array(indicesTris.length * 2);
 		var indicesLines = this.indicesLines;
 
-
+		//Linien um die Dreiecke erstellen
 		for (var i = 0; i <= indicesTris.length; i++) {
 
 			if (i % 3 == 0) {
@@ -182,6 +146,7 @@ var rek = ( function() {
 			}
 		}
 
+		//Koerper hellblau faerben (wegen Shader in EA5.html)
 		for (var j = 0; j <= vertices.length; j++) {
 
 			if (j % 3 == 0) {
@@ -190,6 +155,10 @@ var rek = ( function() {
 				normals[j + 2] = 1;
 			}
 		}
+	}
+
+	function changeRec() {
+		window.location.reload(false);
 	}
 
 	return {

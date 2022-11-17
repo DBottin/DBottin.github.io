@@ -1,4 +1,6 @@
-var app = ( function() {
+//EA5 ALLES HIER
+
+var app = (function () {
 
 	var gl;
 
@@ -34,7 +36,7 @@ var app = ( function() {
 		// given in radian.
 		zAngle: 0,
 		// Distance in XZ-Plane from center when orbiting.
-		distance : 4,
+		distance : 5,
 	};
 
 	function start() {
@@ -203,7 +205,7 @@ var app = ( function() {
 		var deltaRotate = Math.PI / 36;
 		var deltaTranslate = 0.05;
 
-		window.onkeydown = function(evt) {
+		window.onkeydown = function (evt) {
 			var key = evt.which ? evt.which : evt.keyCode;
 			var c = String.fromCharCode(key);
 			var a = evt.keyCode;
@@ -212,17 +214,17 @@ var app = ( function() {
 
 			// Change projection of scene.
 			switch (c) {
-				case('O'):
-					camera.projectionType = "ortho";
-					camera.lrtb = 2;
-					break;
-				case ('F'):
-					camera.projectionType = "frustum";
-					camera.lrtb = 1.2;
-					break;
-				case ('P'):
-					camera.projectionType = "perspective";
-					break;
+	//			case('O'):
+	//				camera.projectionType = "ortho";
+	//				camera.lrtb = 2;
+	//				break;
+	//			case ('F'):
+	//				camera.projectionType = "frustum";
+	//				camera.lrtb = 1.2;
+	//				break;
+	//			case ('P'):
+	//				camera.projectionType = "perspective";
+	//				break;
 				case ('W'):
 					// Move camera up
 					camera.eye[1] += deltaTranslate;
@@ -243,29 +245,29 @@ var app = ( function() {
 					// Camera distance to center.
 					camera.distance -= sign * deltaTranslate;
 					break;
-				case ('V'):
-					// Camera fovy in radian.
-					camera.fovy += sign * 5 * Math.PI / 180;
-					break;
-				case ('B'):
-					// Camera near plane dimensions.
-					camera.lrtb += sign * 0.1;
-					break;
-				case ('Q'):
-					rek.increaseRec();
-					break;
-				case ('Y'):
-					rek.reduceRec();
-					break;
+	//			case ('V'):
+	//				// Camera fovy in radian.
+	//				camera.fovy += sign * 5 * Math.PI / 180;
+	//				break;
+	//			case ('B'):
+	//				// Camera near plane dimensions.
+	//				camera.lrtb += sign * 0.1;
+	//				break;
+	//			case ('Q'):
+	//				rek.increaseRec();
+	//				break;
+	//			case ('Y'):
+	//				rek.reduceRec();
+	//				break;
 			}
 
 			switch (a) {
 				case (39):
-					// Orbit camera.
+					// Kamera drehen 
 					camera.zAngle += deltaRotate;
 					break;
 				case (37):
-					// Orbit camera.
+					// Kamera drehen 
 					camera.zAngle -= deltaRotate;
 					break;
 			}
@@ -284,8 +286,6 @@ var app = ( function() {
 
 		setProjection();
 
-		// mat4.identity(camera.vMatrix);
-		// mat4.rotate(camera.vMatrix, camera.vMatrix, Math.PI * 1 / 4, [1, 0, 0]);
 		calculateCameraOrbit();
 
 		mat4.lookAt(camera.vMatrix, camera.eye, camera.center, camera.up);
@@ -325,7 +325,7 @@ var app = ( function() {
 
 		// Calculate x,z position/eye of camera orbiting the center.
 		var x = 0, z = 2;
-		camera.eye[x] = camera.center[x] + horMovement;
+		camera.eye[x] = camera.center[x] + horMovement; //horMovement um die Kamera mit A und D nach links und rechts zu bewegen
 		camera.eye[z] = camera.center[z];
 		camera.eye[x] += camera.distance * Math.sin(camera.zAngle);
 		camera.eye[z] += camera.distance * Math.cos(camera.zAngle);
