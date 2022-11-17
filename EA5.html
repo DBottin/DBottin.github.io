@@ -2,6 +2,7 @@
 <html>
 <head>
 	<script src="ext/gl-matrix.js"></script>
+	<script src="EA5ObjektRek.js"></script>
 	<script src="EA5Objekt2.js"></script>
 	<script src="EA5Objekt.js"></script>
 	<script src="EA5.js"></script>
@@ -30,7 +31,9 @@
 		}
 	</script>
 </head>
-	<body onload="app.start()">
-		<canvas id="canvas" width="500" height="500"></canvas>
-	</body>
+<body onload="app.start()">
+	<canvas id="canvas" width="500" height="500"></canvas>
+	<p></p>
+	<button type="button" onclick="rek.changeRec()">Rekursionstiefe neu angeben</button>
+</body>
 </html>

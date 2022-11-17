@@ -31,7 +31,7 @@ var torus = ( function() {
 
 				var iVertex = i * (m + 1) + j;
 
-				var x = (R + r * Math.cos(u) ) * Math.cos(v);
+				var x = (R + r * Math.cos(u) ) * Math.cos(v) + 2;
 				var y = (R + r * Math.cos(u) ) * Math.sin(v);
 				var z = r * Math.sin(u);
 

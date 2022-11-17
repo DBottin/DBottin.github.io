@@ -1,7 +1,7 @@
-var bohe = ( function() {
+var ball = ( function() {
 
 	function createVertexData() {
-		var n = 32;
+		var n = 16;
 		var m = 16;
 
 		// Positions.
@@ -17,8 +17,8 @@ var bohe = ( function() {
 		var indicesTris = this.indicesTris;
 
 		var du = 2 * Math.PI / n;
-		var dv = 1 / m;
-		var r = 0.6;
+		var dv = Math.PI / m;
+		var r = 0.75;
 		// Counter for entries in index array.
 		var iLines = 0;
 		var iTris = 0;
@@ -30,9 +30,9 @@ var bohe = ( function() {
 
 				var iVertex = i * (m + 1) + j;
 
-				var x = r * Math.cos(u);
-				var z = r * Math.sin(u);
-				var y = v - 0.5;
+				var x = r * Math.sin(v) * Math.cos(u) - 2;
+				var y = r * Math.sin(v) * Math.sin(u);
+				var z = r * Math.cos(v);
 
 				// Set vertex positions.
 				vertices[iVertex * 3] = x;
@@ -40,12 +40,10 @@ var bohe = ( function() {
 				vertices[iVertex * 3 + 2] = z;
 
 				// Calc and set normals.
-				var nx = Math.cos(u) * Math.cos(v);
-				var ny = Math.cos(u) * Math.sin(v);
-				var nz = Math.sin(u);
-				normals[iVertex * 3] = nx;
-				normals[iVertex * 3 + 1] = ny;
-				normals[iVertex * 3 + 2] = nz;
+				var vertexLength = Math.sqrt(x * x + y * y + z * z);
+				normals[iVertex * 3] = x / vertexLength;
+				normals[iVertex * 3 + 1] = y / vertexLength;
+				normals[iVertex * 3 + 2] = z / vertexLength;
 
 				// if(i>14){
 				// continue;

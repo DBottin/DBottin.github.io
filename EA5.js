@@ -10,7 +10,6 @@ var app = ( function() {
 	var models = [];
 
 	var horMovement = 0;
-	var verMovement = 1;
 
 	var camera = {
 		// Initial position of the camera.
@@ -34,7 +33,6 @@ var app = ( function() {
 		// Angle to Z-Axis for camera when orbiting the center
 		// given in radian.
 		zAngle: 0,
-		yAngle: 0,
 		// Distance in XZ-Plane from center when orbiting.
 		distance : 4,
 	};
@@ -133,8 +131,9 @@ var app = ( function() {
 	function initModels() {
 		// fill-style
 		var fs = "fillwireframe";
-		createModel("bohe", fs);
-		//createModel("plane", "wireframe");
+		createModel("ball", fs);
+		createModel("torus", fs);
+		createModel("rek", fs);
 	}
 
 	/**
@@ -226,7 +225,7 @@ var app = ( function() {
 					break;
 				case ('W'):
 					// Move camera up
-					verMovement += deltaTranslate;
+					camera.eye[1] += deltaTranslate;
 					break;
 				case ('A'):
 					// Move camera left 
@@ -234,7 +233,7 @@ var app = ( function() {
 					break;
 				case ('S'):
 					// Move camera down
-					verMovement -= deltaTranslate;
+					camera.eye[1] -= deltaTranslate;
 					break;
 				case ('D'):
 					// Move camera right
@@ -252,20 +251,18 @@ var app = ( function() {
 					// Camera near plane dimensions.
 					camera.lrtb += sign * 0.1;
 					break;
+				case ('Q'):
+					rek.increaseRec();
+					break;
+				case ('Y'):
+					rek.reduceRec();
+					break;
 			}
 
 			switch (a) {
-				case (40):
-					// Orbit camera.
-					camera.yAngle -= deltaRotate;
-					break;
 				case (39):
 					// Orbit camera.
 					camera.zAngle += deltaRotate;
-					break;
-				case (38):
-					// Orbit camera.
-					camera.yAngle += deltaRotate;
 					break;
 				case (37):
 					// Orbit camera.
@@ -327,14 +324,11 @@ var app = ( function() {
 	function calculateCameraOrbit() {
 
 		// Calculate x,z position/eye of camera orbiting the center.
-		var x = 0, y = 1, z = 2;
+		var x = 0, z = 2;
 		camera.eye[x] = camera.center[x] + horMovement;
-		camera.eye[x] += camera.distance * Math.sin(camera.zAngle);
-
-		camera.eye[y] = camera.center[y] + verMovement;
 		camera.eye[z] = camera.center[z];
-		camera.eye[y] += camera.distance * Math.sin(camera.yAngle);
-		camera.eye[z] += camera.distance * Math.cos(camera.yAngle + camera.zAngle);
+		camera.eye[x] += camera.distance * Math.sin(camera.zAngle);
+		camera.eye[z] += camera.distance * Math.cos(camera.zAngle);
 	}
 
 	function draw(model) {
