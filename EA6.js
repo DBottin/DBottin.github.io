@@ -1,4 +1,4 @@
-var app = ( function() {
+var app = (function () {
 
 	var gl;
 
@@ -10,6 +10,7 @@ var app = ( function() {
 	var models = [];
 
 	// Model that is target for user input.
+	//EA6 START
 	var interactiveModel;
 	var spheretl;
 	var spheretr;
@@ -17,6 +18,7 @@ var app = ( function() {
 	var spherebr;
 
 	var currentPos = 2 * Math.PI / 50 * 4;
+	//EA6 END
 
 	var camera = {
 		// Initial position of the camera.
@@ -41,7 +43,7 @@ var app = ( function() {
 		// given in radian.
 		zAngle : 0,
 		// Distance in XZ-Plane from center when orbiting.
-		distance : 4,
+		distance : 4.5,
 	};
 
 	function start() {
@@ -137,6 +139,7 @@ var app = ( function() {
 		prog.colorUniform = gl.getUniformLocation(prog, "uColor");
 	}
 
+	//EA6 START
 	function initModels() {
 		// fillstyle
 		var fs = "fill";
@@ -160,6 +163,7 @@ var app = ( function() {
 		spheretr = models[3];
 		spherebl = models[4];
 		spherebr = models[5];
+	//EA6 END
 	}
 
 	/**
@@ -255,14 +259,15 @@ var app = ( function() {
 			var deltaScale = 0.05;
 
 			switch (c) {
-				case ('S'):
-					interactiveModel.scale[0] *= 1 + sign * deltaScale;
-					interactiveModel.scale[1] *= 1 - sign * deltaScale;
-					interactiveModel.scale[2] *= 1 + sign * deltaScale;
-					break;
+		//		case ('S'):
+		//			interactiveModel.scale[0] *= 1 + sign * deltaScale;
+		//			interactiveModel.scale[1] *= 1 - sign * deltaScale;
+		//			interactiveModel.scale[2] *= 1 + sign * deltaScale;
+		//			break;
 
+				//EA6 START
 				case ('K'):
-					currentPos += 2 * Math.PI / 60;
+					currentPos += sign * 2 * Math.PI / 60;
 					spherebl.translate[0] = -0.8 + Math.cos(currentPos) * 1.22;
 					spherebl.translate[2] = 0.8 + Math.sin(currentPos) * 1.22;
 
@@ -277,20 +282,21 @@ var app = ( function() {
 
 					interactiveModel.rotate[1] -= sign * deltaRotate;
 					break;
+				//EA6 END
 			}
 
 			// Rotate interactive Model.
-			switch (c) {
-				case ('X'):
-					interactiveModel.rotate[0] += sign * deltaRotate;
-					break;
-				case ('Y'):
-					interactiveModel.rotate[1] += sign * deltaRotate;
-					break;
-				case ('Z'):
-					interactiveModel.rotate[2] += sign * deltaRotate;
-					break;
-			}
+		//	switch (c) {
+		//		case ('X'):
+		//			interactiveModel.rotate[0] += sign * deltaRotate;
+		//			break;
+		//		case ('Y'):
+		//			interactiveModel.rotate[1] += sign * deltaRotate;
+		//			break;
+		//		case ('Z'):
+		//			interactiveModel.rotate[2] += sign * deltaRotate;
+		//			break;
+		//	}
 
 			// Change projection of scene.
 			switch(c) {
@@ -316,9 +322,9 @@ var app = ( function() {
 					// Move camera up and down.
 					camera.eye[1] += sign * deltaTranslate;
 					break;
-				case('D'):
+				case('N'):
 					// Camera distance to center.
-					camera.distance += sign * deltaTranslate;
+					camera.distance -= sign * deltaTranslate;
 					break;
 				case('V'):
 					// Camera fovy in radian.
