@@ -37,7 +37,7 @@ var app = ( function() {
 		// given in radian.
 		zAngle: 0,
 		// Distance in XZ-Plane from center when orbiting.
-		distance : 5,
+		distance : 5.2,
 	};
 
 	function start() {
@@ -229,9 +229,9 @@ var app = ( function() {
 
 	function initEventHandler() {
 		// Rotation step for models.
-		var deltaRotate = Math.PI / 36;
+	//	var deltaRotate = Math.PI / 36;
 		var deltaTranslate = 0.05;
-		var deltaScale = 0.05;
+	//	var deltaScale = 0.05;
 
 		window.onkeydown = function(evt) {
 			var key = evt.which ? evt.which : evt.keyCode;
@@ -261,25 +261,25 @@ var app = ( function() {
 	//				break;
 	//		}
 			// Change projection of scene.
-			switch(c) {
-				case('O'):
-					camera.projectionType = "ortho";
-					camera.lrtb = 2;
-					break;
-				case('F'):
-					camera.projectionType = "frustum";
-					camera.lrtb = 1.2;
-					break;
-				case('P'):
-					camera.projectionType = "perspective";
-					break;
-			}
+	//		switch(c) {
+	//			case('O'):
+	//				camera.projectionType = "ortho";
+	//				camera.lrtb = 2;
+	//				break;
+	//			case('F'):
+	//				camera.projectionType = "frustum";
+	//				camera.lrtb = 1.2;
+	//				break;
+	//			case('P'):
+	//				camera.projectionType = "perspective";
+	//				break;
+	//		}
 			// Camera move and orbit.
 			switch(c) {
-				case('C'):
+	//			case('C'):
 					// Orbit camera.
-					camera.zAngle += sign * deltaRotate;
-					break;
+	//				camera.zAngle += sign * deltaRotate;
+	//				break;
 				case ('W'):
 					// Move camera up
 					camera.eye[1] += deltaTranslate;
@@ -300,14 +300,14 @@ var app = ( function() {
 					// Camera distance to center.
 					camera.distance -= sign * deltaTranslate;
 					break;
-				case('V'):
+	//			case('V'):
 					// Camera fovy in radian.
-					camera.fovy += sign * 5 * Math.PI / 180;
-					break;
-				case('B'):
+	//				camera.fovy += sign * 5 * Math.PI / 180;
+	//				break;
+	//			case('B'):
 					// Camera near plane dimensions.
-					camera.lrtb += sign * 0.1;
-					break;
+	//				camera.lrtb += sign * 0.1;
+	//				break;
 			}
 			// Render the scene again on any key pressed.
 			render();
