@@ -30,14 +30,16 @@
 			precision mediump float;
 			varying vec4 vColor;
 
+			// EA7 START
 			void main() {
 				vec4 newColor = vColor;
-				newColor.r = newColor.r;
-				newColor.g = newColor.g;
-				newColor.b = newColor.b;
-				newColor.a = 1.15 - gl_FragCoord[2] / 1.1;
+				newColor.r = gl_FragCoord[2] / 1.1 - 0.2;
+				newColor.g = gl_FragCoord[2] / 1.1 - 0.2;
+				newColor.b = gl_FragCoord[2] / 1.1 - 0.2;
+				newColor.a = 1.0;
 				gl_FragColor = newColor;
 			}
+			// EA7 END
 		</script>
 	</head>
 	<body onload="app.start()">
