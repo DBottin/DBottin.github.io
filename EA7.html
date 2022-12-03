@@ -33,9 +33,9 @@
 			// EA7 START
 			void main() {
 				vec4 newColor = vColor;
-				newColor.r = gl_FragCoord[2] / 1.1 - 0.2;
-				newColor.g = gl_FragCoord[2] / 1.1 - 0.2;
-				newColor.b = gl_FragCoord[2] / 1.1 - 0.2;
+				newColor.r = gl_FragCoord[2] / 0.8 - 0.5;
+				newColor.g = gl_FragCoord[2] / 0.8 - 0.5;
+				newColor.b = gl_FragCoord[2] / 0.8 - 0.5;
 				newColor.a = 1.0;
 				gl_FragColor = newColor;
 			}

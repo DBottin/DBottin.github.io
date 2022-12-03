@@ -12,7 +12,7 @@ var app = ( function() {
 	// Model that is target for user input.
 	var interactiveModel;
 
-	var horMovement = 1;
+	var horMovement = -0.5;
 
 	var camera = {
 		// Initial position of the camera.
@@ -37,7 +37,7 @@ var app = ( function() {
 		// given in radian.
 		zAngle: 0,
 		// Distance in XZ-Plane from center when orbiting.
-		distance : 5.2,
+		distance : 4,
 	};
 
 	function start() {

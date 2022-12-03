@@ -137,7 +137,7 @@ var app = ( function() {
 	function initModels() {
 		// fillstyle
 		var fs = "fillwireframe";
-		createModel("torus", fs, [1, 1, 1, 1], [0, 0, 0], [0, 0, 0], [1, 1, 1]);
+		createModel("plane", fs, [1, 1, 1, 1], [0, 0, 0], [0, 0, 0], [1, 1, 1]);
 
 		// Select one model that can be manipulated interactively by user.
 		interactiveModel = models[0];
