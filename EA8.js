@@ -54,6 +54,7 @@ var app = (function() {
             }        ]
     };
 
+    //EA8 START
     var automated = false;
     var currentLight = 2 * Math.PI / 60 * 7;
 
@@ -79,6 +80,7 @@ var app = (function() {
 
         render();
     }
+    //EA8 END
 
     function start() {
         init();
@@ -382,7 +384,7 @@ var app = (function() {
                 break;
             case ('D'):
                 // Camera distance to center.
-                camera.distance += sign * deltaTranslate;
+                camera.distance -= sign * deltaTranslate;
                 break;
             case ('V'):
                 // Camera fovy in radian.
@@ -393,7 +395,7 @@ var app = (function() {
                 camera.lrtb += sign * 0.1;
                 break;
             case ('L'):
-                autoAnimate();
+                autoAnimate();    //EA8
                 break;
             }
             // Render the scene again on any key pressed.
