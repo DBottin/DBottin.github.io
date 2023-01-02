@@ -1,4 +1,3 @@
-// BEGIN exercise plane
 var plane = ( function() {
 
 	function createVertexData() {
@@ -11,10 +10,6 @@ var plane = ( function() {
 		// Normals.
 		this.normals = new Float32Array(3 * (n + 1) * (m + 1));
 		var normals = this.normals;
-
-		// Texture coordinates (2D).
-		this.textureCoord = new Float32Array(2 * (n + 1) * (m + 1));
-		var textureCoord = this.textureCoord;
 		// Index data.
 		this.indicesLines = new Uint16Array(2 * 2 * n * m);
 		var indicesLines = this.indicesLines;
@@ -23,14 +18,16 @@ var plane = ( function() {
 
 		var du = 20 / n;
 		var dv = 20 / m;
+		var r = 0.3;
+		var R = 0.5;
 		// Counter for entries in index array.
 		var iLines = 0;
 		var iTris = 0;
 
-		// Loop u.
-		for(var i = 0, u = -10; i <= n; i++, u += du) {
-			// Loop v.
-			for(var j = 0, v = -10; j <= m; j++, v += dv) {
+		// Loop angle u.
+		for (var i = 0, u = -10; i <= n; i++, u += du) {
+			// Loop angle v.
+			for (var j = 0, v = -10; j <= m; j++, v += dv) {
 
 				var iVertex = i * (m + 1) + j;
 
@@ -47,10 +44,10 @@ var plane = ( function() {
 				normals[iVertex * 3] = 0;
 				normals[iVertex * 3 + 1] = 1;
 				normals[iVertex * 3 + 2] = 0;
-				
-				// Set texture coordinate.
-				textureCoord[iVertex * 2] = (u+10)/20; // s
-				textureCoord[iVertex * 2 + 1] = (v+10)/20; // t
+
+				// if(i>14){
+				// continue;
+				// }
 
 				// Set index.
 				// Line on beam.
@@ -81,7 +78,6 @@ var plane = ( function() {
 
 	return {
 		createVertexData : createVertexData
-	};
+	}
 
 }());
-//END exercise plane
