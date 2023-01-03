@@ -10,6 +10,10 @@ var torus = ( function() {
 		// Normals.
 		this.normals = new Float32Array(3 * (n + 1) * (m + 1));
 		var normals = this.normals;
+
+		this.textureCoord = new Float32Array(2 * (n + 1) * (m + 1));
+		var textureCoord = this.textureCoord;
+
 		// Index data.
 		this.indicesLines = new Uint16Array(2 * 2 * n * m);
 		var indicesLines = this.indicesLines;
@@ -48,9 +52,8 @@ var torus = ( function() {
 				normals[iVertex * 3 + 1] = ny;
 				normals[iVertex * 3 + 2] = nz;
 
-				// if(i>14){
-				// continue;
-				// }
+				textureCoord[iVertex * 2] = u / (2 * Math.PI); // s
+				textureCoord[iVertex * 2 + 1] = v / (2 * Math.PI); // t
 
 				// Set index.
 				// Line on beam.

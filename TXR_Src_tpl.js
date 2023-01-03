@@ -30,7 +30,7 @@ var app = (function() {
         // Projection matrix.
         pMatrix : mat4.create(),
         // Projection types: ortho, perspective, frustum.
-        projectionType : "perspective",
+        projectionType: "ortho",
         // Angle to Z-Axis for camera when orbiting the center
         // given in radian.
         zAngle : 0,
