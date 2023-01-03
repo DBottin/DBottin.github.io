@@ -258,10 +258,10 @@ var app = (function() {
        // createModel("plane", fs, [ 1, 1, 1, 1 ], [ 0, 0, 0, 0 ], [ 0, 0, 0,
        //         0 ], [ 1, 1, 1, 1 ], mGrey, "x.png");
 
-        createModel("torus", fs, [1, 1, 1, 1], [2, 0, 0], [0, 0, 0],
-            [1, 1, 1], mWhite, "Earth.png");
+        createModel("torus", fs, [1, 1, 1, 1], [1, 0, 0], [0, 0, 0],
+            [1, 1, 1], mWhite, "torustexture.png");
 
-        createModel("torus", fs, [1, 1, 1, 1], [-2, 0, 0], [0, 0, 0],
+        createModel("torus", fs, [1, 1, 1, 1], [-1, 0, 0], [0, 0, 0],
             [1, 1, 1], mWhite, "x.png");
 
         // Select one model that can be manipulated interactively by user.
