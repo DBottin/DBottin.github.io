@@ -259,7 +259,7 @@ var app = (function() {
        //         0 ], [ 1, 1, 1, 1 ], mGrey, "x.png");
 
         createModel("sphere", fs, [1, 1, 1, 1], [0, 0, 0], [0, 0, 0],
-            [2, 2, 2], mWhite, "earth.png");
+            [2, 2, 2], mWhite, "Earth.png");
 
         // Select one model that can be manipulated interactively by user.
         interactiveModel = models[0];
