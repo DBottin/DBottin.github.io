@@ -262,7 +262,7 @@ var app = (function() {
             [1, 1, 1], mWhite, "torustexture.png");
 
         createModel("torus", fs, [1, 1, 1, 1], [-1, 0, 0], [0, 0, 0],
-            [1, 1, 1], mWhite, "x.png");
+            [1, 1, 1], mWhite, "karomuster.jpg");
 
         // Select one model that can be manipulated interactively by user.
         interactiveModel = models[0];
