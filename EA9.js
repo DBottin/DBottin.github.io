@@ -12,6 +12,8 @@ var app = (function() {
     // Model that is target for user input.
     var interactiveModel;
 
+    var horMovement = 0;
+
     var camera = {
         // Initial position of the camera.
         eye : [ 0, 1, 4 ],
@@ -416,11 +418,23 @@ var app = (function() {
                 // Orbit camera.
                 camera.zAngle += sign * deltaRotate;
                 break;
-            case ('H'):
-                // Move camera up and down.
-                camera.eye[1] += sign * deltaTranslate;
-                break;
-            case ('D'):
+            case ('W'):
+				// Move camera up
+				camera.eye[1] += deltaTranslate;
+				break;
+			case ('A'):
+				// Move camera left 
+				horMovement -= deltaTranslate;
+				break;
+			case ('S'):
+				// Move camera down
+				camera.eye[1] -= deltaTranslate;
+				break;
+			case ('D'):
+				// Move camera right
+				horMovement += deltaTranslate;
+				break;
+            case ('B'):
                 // Camera distance to center.
                 camera.distance += sign * deltaTranslate;
                 break;
@@ -428,7 +442,7 @@ var app = (function() {
                 // Camera fovy in radian.
                 camera.fovy += sign * 5 * Math.PI / 180;
                 break;
-            case ('B'):
+            case ('N'):
                 // Camera near plane dimensions.
                 camera.lrtb += sign * 0.1;
                 break;
@@ -508,7 +522,7 @@ var app = (function() {
     function calculateCameraOrbit() {
         // Calculate x,z position/eye of camera orbiting the center.
         var x = 0, z = 2;
-        camera.eye[x] = camera.center[x];
+        camera.eye[x] = camera.center[x] + horMovement;
         camera.eye[z] = camera.center[z];
         camera.eye[x] += camera.distance * Math.sin(camera.zAngle);
         camera.eye[z] += camera.distance * Math.cos(camera.zAngle);
