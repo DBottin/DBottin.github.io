@@ -391,13 +391,13 @@ var app = (function() {
                 break;
             }
             // Scale/squeese interactiveModel.
-            switch (c) {
-            case ('S'):
-                interactiveModel.scale[0] *= 1 + sign * deltaScale;
-                interactiveModel.scale[1] *= 1 - sign * deltaScale;
-                interactiveModel.scale[2] *= 1 + sign * deltaScale;
-                break;
-            }
+     //       switch (c) {
+     //       case ('S'):
+     //           interactiveModel.scale[0] *= 1 + sign * deltaScale;
+     //           interactiveModel.scale[1] *= 1 - sign * deltaScale;
+     //           interactiveModel.scale[2] *= 1 + sign * deltaScale;
+     //           break;
+     //       }
             // Change projection of scene.
             switch (c) {
             case ('O'):
