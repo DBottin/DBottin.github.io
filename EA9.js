@@ -35,7 +35,7 @@ var app = (function() {
         projectionType: "ortho",
         // Angle to Z-Axis for camera when orbiting the center
         // given in radian.
-        zAngle : 0,
+        zAngle : Math.PI,
         // Distance in XZ-Plane from center when orbiting.
         distance : 4,
     };
