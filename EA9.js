@@ -444,7 +444,7 @@ var app = (function() {
                 break;
             case ('N'):
                 // Camera near plane dimensions.
-                camera.lrtb += sign * 0.1;
+                camera.lrtb -= sign * 0.1;
                 break;
             }
             // Render the scene again on any key pressed.
